@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> NFL Player Quiz </title>
+        <h1> NFL Player Quiz </h1>
+        <h3> Guess which player this is: </h3>
+        <style>
+            div {
+                text-align: center;
+            }
+            
+            img {
+                width: 500px;
+                height: 500px;            }
+        </style>
+    <script>
+        //Question and Answer Arrays
+        //Put image links in the var images
+        //Tyreek Hill Image: https://bit.ly/3FKwzh0
+        //
+            var questionsSeen = [];
+            var questionNumber = 1;
+            
+            var QandA = [
+                ["https://static.clubs.nfl.com/image/private/t_editorial_landscape_mobile/f_auto/dolphins/ml1inwkhin4vwmj7s6jq.jpg", "Tyreek Hill"],
+                ["https://upload.wikimedia.org/wikipedia/commons/1/1a/Tom_Brady_2020_playoffs.jpg", "Tom Brady"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Aaron_Rodgers_Packers_OCT2021_%28cropped%29.jpg/800px-Aaron_Rodgers_Packers_OCT2021_%28cropped%29.jpg", "Aaron Rodgers"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/DeAndre_Hopkins_2020.jpg/640px-DeAndre_Hopkins_2020.jpg", "DeAndre Hopkins"],
+                ["https://upload.wikimedia.org/wikipedia/commons/7/7b/Saquon_Barkley_Giants_2018.jpg", "Saquon Barkley"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Cook_2022_%28cropped%29.jpg/800px-Cook_2022_%28cropped%29.jpg", "Dalvin Cook"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Aaron_Jones_WFT_vs_Packers_OCT2021.jpg/800px-Aaron_Jones_WFT_vs_Packers_OCT2021.jpg", "Aaron Jones"],
+                ["https://upload.wikimedia.org/wikipedia/commons/4/43/Julio_Jones_2018.jpg", "Julio Jones"],
+                ["https://s3media.247sports.com/Uploads/Assets/889/881/9881889.jpg", "Dexter Lawrence II"],
+                ["https://upload.wikimedia.org/wikipedia/commons/c/c7/Micah_Hyde_%28American_football%29.JPG", "Micah Hyde"],
+                ["https://upload.wikimedia.org/wikipedia/commons/6/6d/Fred_Warner_49ers_2018_%281%29.jpg", "Fred Warner"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Michael_Pittman_Jr._%282020%29.jpg/800px-Michael_Pittman_Jr._%282020%29.jpg", "Michael Pittman Jr."],
+                
+                ["https://cdn.vox-cdn.com/thumbor/OxC8G_cOU_wIwHeS9fZVGg1492g=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/24099111/1430110925.jpg", "Kenneth Walker III"],
+                
+                ["https://weeklyspiral.com/wp-content/uploads/2021/12/1355579122-750x422.jpeg", "Amon Ra St.Brown"],
+                
+                ["https://profootballtalk.nbcsports.com/wp-content/uploads/sites/25/2022/11/GettyImages-1244473635-e1667565678411.jpg?w=560&h=316&crop=1", "Dameon Pierce"],
+                ["https://upload.wikimedia.org/wikipedia/commons/9/95/Josh_Allen_SEPT2021_%28cropped2%29.jpg", "Josh Allen"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Jalen_Hurts_WFT_%40_PHI_2021_%28cropped%29.jpg/518px-Jalen_Hurts_WFT_%40_PHI_2021_%28cropped%29.jpg", "Jalen Hurts"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Lamar_Jackson_2020.jpg/640px-Lamar_Jackson_2020.jpg", "Lamar Jackson"],
+                ["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Chiefs_361_%2851615694173%29.jpg/1200px-Chiefs_361_%2851615694173%29.jpg", "Travis Kelce"],
+                
+                ["https://factoryofsadness.co/wp-content/uploads/imagn-images/2017/07/15072604.jpeg", "David Njoku"]
+            ];
+                         
+                         
+
+        
+        //Returns and sets a random image from our list of 20
+        function setImg(){
+            int = Math.floor(Math.random() * 19);
+            while (questionsSeen.includes(int)){
+                int = Math.floor(Math.random() * 19);
+                if(questionNumber == 20){
+                    alert("All Questions Answered!");
+                    return;
+                }
+            }
+            questionsSeen.push(int);
+            document.getElementById("picture").setAttribute("src", QandA[int][0]);
+            
+        }
+        
+        
+        function setRandButtons(){
+                
+            var answerButton = Math.floor((Math.random() * 4) + 1);
+            
+            var rand1 = Math.floor(Math.random() * 19);
+            while(rand1 == int){
+                rand1 = Math.floor(Math.random() * 19);
+            }
+            
+            var rand2 = Math.floor(Math.random() * 19);
+            while(rand2 == int || rand2 == rand1){
+                rand2 = Math.floor(Math.random() * 19);
+            }
+            
+            var rand3 = Math.floor(Math.random() * 19);
+            while(rand3 == int || rand3 == rand1 || rand3 == rand2){
+                rand3 = Math.floor(Math.random() * 19);
+            }
+            
+            if(answerButton == 1){
+                document.getElementById("button1").setAttribute("value", QandA[int][1]);
+                document.getElementById("button2").setAttribute("value", QandA[rand1][1]);
+                document.getElementById("button3").setAttribute("value", QandA[rand2][1]);
+                document.getElementById("button4").setAttribute("value", QandA[rand3][1]);
+            }
+            if(answerButton == 2){
+                document.getElementById("button2").setAttribute("value", QandA[int][1]);
+                document.getElementById("button1").setAttribute("value", QandA[rand1][1]);
+                document.getElementById("button3").setAttribute("value", QandA[rand2][1]);
+                document.getElementById("button4").setAttribute("value", QandA[rand3][1]);
+            }
+            if(answerButton == 3){
+                document.getElementById("button3").setAttribute("value", QandA[int][1]);
+                document.getElementById("button1").setAttribute("value", QandA[rand1][1]);
+                document.getElementById("button2").setAttribute("value", QandA[rand2][1]);
+                document.getElementById("button4").setAttribute("value", QandA[rand3][1]);
+            }
+            if(answerButton == 4){
+                document.getElementById("button4").setAttribute("value", QandA[int][1]);
+                document.getElementById("button1").setAttribute("value", QandA[rand1][1]);
+                document.getElementById("button2").setAttribute("value", QandA[rand2][1]);
+                document.getElementById("button3").setAttribute("value", QandA[rand3][1]);
+            }    
+        }
+        
+        function start(){
+            setImg();
+            setRandButtons();   
+        }
+        
+        function nextButton(){
+            questionNumber++;
+            setImg();
+            setRandButtons();
+        }
+        
+        window.addEventListener("load", start, false);
+        
+        //Function for if the user answers correctly
+        function setStatusClass(element,correct){
+            clearStatusClass(element);
+            quis++;
+            if(correct){
+                element.classList.add("correct");
+                quizScore++;
+            }
+            else {
+                element.classList.add("wrong");
+            }
+            return quizTotal;
+            return quizScore;
+        }
+     
+        function clearStatusClass(){
+            element.classList.remove("correct");
+            element.classList.remove("wrong");
+        }
+        
+        function displayQuizResults(){
+            
+        }
+        
+    </script>
+    </head>
+     
+    
+    <body>
+        <div>
+            <img id = "picture" src = "" alt = " "> 
+        </div>
+        <div>
+            <input id ="button1"type="button" value="">
+            <input id ="button2"type="button" value="">
+            <input id ="button3"type="button" value="">
+            <input id ="button4"type="button" value="">
+        </div>
+        <div>
+            <input id = "showCorrect" value = "Show Correct" type="button">
+            <input id = "nextButton" type="button" value="Next" onclick="nextButton()">
+        </div>
+    </body>
+</html>
